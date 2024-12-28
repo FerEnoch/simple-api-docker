@@ -1,12 +1,19 @@
 GET http://localhost:3001/users HTTP/1.1
 
 ###
+GET http://localhost:3001/users/Fito%20Páez HTTP/1.1
 
+###
+GET http://localhost:3001/users/Dolina HTTP/1.1
+
+###
 POST http://localhost:3001/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "sagan@myhost.com",
+    "name": "Dolina",
+    "nickname": "mdolina",
+    "email": "mdolina@myhost.com",
     "password": "8sdfddds55d"
 }
 

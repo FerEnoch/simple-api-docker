@@ -9,6 +9,7 @@ export function createRouter (service: servicesTypes): Router {
     const userController = new UserController(service)
 
     router.get('/', userController.getAll.bind(userController) as any)
+    router.get('/:name', userController.getUserByName.bind(userController) as any)
     router.post('/', userController.register.bind(userController) as any)
     router.delete('/', userController.deleteAll.bind(userController) as any)
   } catch (error) {

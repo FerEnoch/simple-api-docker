@@ -15,10 +15,19 @@ export class UserController implements IUserController {
     return res.status(200).json(users)
   }
 
-  async register (req: Request, res: Response): Promise<Response<any, Record<string, any>>> {
-    const { email, password } = req.body as UserData
+  async getUserByName (req: Request, res: Response): Promise<Response<any, Record<string, any>>> {
+    const { name } = req.params
+    const user = await this.service.getUserByName(name)
+    if (user === null) {
+      return res.status(404).send('User not found')
+    }
+    return res.status(200).json(user)
+  }
 
-    const user = await this.service.register({ email, password })
+  async register (req: Request, res: Response): Promise<Response<any, Record<string, any>>> {
+    const { name, nickname, email, password } = req.body as UserData
+
+    const user = await this.service.register({ name, nickname, email, password })
     return res.status(201).json(user)
   }
 

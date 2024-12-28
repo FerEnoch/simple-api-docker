@@ -10,10 +10,24 @@ export class UsersService implements IUsersService {
     return await UserModel.find()
   }
 
+  async getUserByName (name: string): Promise<UserDocumentType | null> {
+    return await UserModel.findOne({
+      name
+    })
+  }
+
   async register (data: UserData): Promise<UserDocumentType> {
+    const {
+      name,
+      nickname,
+      email,
+      password
+    } = data
     const user = new UserModel<UserData>({
-      email: data.email,
-      password: await bcrypt.hash(data.password, 10)
+      name,
+      nickname,
+      email,
+      password: await bcrypt.hash(password, 10)
     })
 
     return await user.save()

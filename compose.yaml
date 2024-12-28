@@ -9,8 +9,8 @@ services:
       - 3001:3001
     links:
       - mondongo
-    # volumes:
-    #   - .:/home/app
+    volumes:
+      - .:/home/app
     develop:
       watch:
         - path: ./src
