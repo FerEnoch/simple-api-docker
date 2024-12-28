@@ -1,0 +1,38 @@
+services:
+  users-api:
+    # image: users
+    build:
+      context: .
+      # dockerfile: Dockerfile
+      target: api-dev
+    ports:
+      - "3001:3001"
+    links:
+      - mondongo
+    # volumes:
+    #   - .:/home/app
+    develop:
+      watch:
+        - path: ./src
+          action: sync
+          target: /home/app/dist
+    environment:
+      - PORT=3001
+      - MONGO_USER=mondongo_ferenoch
+      - MONGO_PASS=mondongo
+      - MONGO_HOST=mondongo
+      - MONGO_PORT=27017
+      - MONGO_DB=users
+  mondongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mondongo_ferenoch
+      - MONGO_INITDB_ROOT_PASSWORD=mondongo
+    volumes:
+      - mongo-data:/data/db
+      # - mysql-data:/var/lib/mysql
+      # - postgres-data:/var/lib/postgresql/data
+volumes:
+  mongo-data:
