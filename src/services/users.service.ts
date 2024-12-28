@@ -1,24 +1,25 @@
-import { UserModel } from '../db/schemas/user.schema';
-import { UserData } from '../db/schemas/types';
-import bcrypt from 'bcrypt';
+import { UserModel } from '../db/schemas/user.schema'
+import { DeleteResult } from 'mongoose'
+import { UserData, UserDocumentType } from '../db/schemas/types'
 
-export class UsersService {
+import bcrypt from 'bcrypt'
+import { IUsersService } from './types'
 
-  static async getAll() {
-    return UserModel.find();
+export class UsersService implements IUsersService {
+  async getAll (): Promise<UserDocumentType[]> {
+    return await UserModel.find()
   }
 
-  static async register(data: UserData) {
+  async register (data: UserData): Promise<UserDocumentType> {
     const user = new UserModel<UserData>({
       email: data.email,
       password: await bcrypt.hash(data.password, 10)
-    });
+    })
 
-    return await user.save();
+    return await user.save()
   }
 
-  static async deleteAll() {
-    return await UserModel.deleteMany({});
+  async deleteAll (): Promise<DeleteResult> {
+    return await UserModel.deleteMany({})
   }
-
 }

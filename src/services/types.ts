@@ -1,10 +1,10 @@
-import { DeleteResult } from "mongoose";
-import { UserData, UserDocumentType } from "../db/schemas/types";
+import { DeleteResult } from 'mongoose'
+import { UserData, UserDocumentType } from '../db/schemas/types'
 
 export interface IUsersService {
-    getAll: () => Promise<UserDocumentType[]>
+  getAll: () => Promise<UserDocumentType[]>
 
-    register: (data: UserData) => Promise<UserDocumentType>
+  register: (data: UserData) => Promise<UserDocumentType>
 
-    deleteAll: () => Promise<DeleteResult>
+  deleteAll: () => Promise<DeleteResult>
 }
