@@ -25,6 +25,9 @@ services:
       - MONGO_DB=${MONGO_DB}
     env_file:
       - .env
+    depends_on:
+      mondongo:
+        condition: service_healthy
   mondongo:
     image: mongo
     ports:
