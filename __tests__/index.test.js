@@ -2,11 +2,11 @@
 // import mongoose from 'mongoose'
 // import { MongoMemoryServer } from 'mongodb-memory-server-core'
 // import app from '../index.js'
-// import { suite, expect, it, test, beforeAll, afterAll } from 'vitest'
+import { suite, expect, it, test, beforeAll, afterAll } from 'vitest'
 
-// test('hello world!', () => {
-//   expect(1 + 1).toBe(2)
-// })
+test('hello world!', () => {
+  expect(1 + 1).toBe(2)
+})
 
 // let mongoServer
 
