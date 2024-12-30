@@ -41,5 +41,11 @@ services:
       - mongo-data:/data/db
       # - mysql-data:/var/lib/mysql
       # - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: "mongosh --eval 'db.runCommand({ ping: 1 })' --quiet"
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_interval: 5s
 volumes:
   mongo-data:
