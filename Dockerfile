@@ -10,4 +10,5 @@ CMD ["npm", "run", "dev"]
 
 
 FROM api-base AS api-prod
-CMD ["npm", "run", "build", "&&", "npm", "run", "start"]
+RUN npm run build
+CMD  ["npm", "run", "start"]

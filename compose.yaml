@@ -4,18 +4,19 @@ services:
     build:
       context: .
       # dockerfile: Dockerfile
-      target: api-dev
+      # target: api-dev
+      target: api-prod
     ports:
       - 3001:3001
     links:
       - mondongo
-    volumes:
-      - .:/home/app
-    develop:
-      watch:
-        - path: ./src
-          action: sync
-          target: /home/app/dist
+    # volumes:
+    #   - .:/home/app
+    # develop:
+    #   watch:
+    #     - path: ./src
+    #       action: sync
+    #       target: /home/app/dist
     environment:
       - PORT=${PORT}
       - MONGO_USER=${MONGO_USER}
